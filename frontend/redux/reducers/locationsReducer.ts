@@ -2,9 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface Location {
   id: number
-  name?: string
   lat: number
   lng: number
+  name?: string
   address?: string
 }
 
@@ -21,20 +21,17 @@ const initialState: Locations = {
       lat: 37.623718451666946,
       lng: 127.09323244316982,
       name: '서울여대',
-      address: '',
     },
     {
       id: 2,
       lat: 37.540862164493284,
       lng: 127.07206040672003,
-      address: '',
       name: '건국대',
     },
     {
       id: 3,
       lat: 37.6319630613234,
       lng: 127.0801748260039,
-      address: '',
       name: '과기대',
     },
   ],
@@ -43,14 +40,12 @@ const initialState: Locations = {
       id: 4,
       lat: 37.46002009776054,
       lng: 126.95132954803483,
-      address: '',
       name: '서울대',
     },
     {
       id: 5,
       lat: 37.55508155797199,
       lng: 126.92693564173828,
-      address: '',
       name: '홍대 조폭 떡볶이',
     },
   ],
