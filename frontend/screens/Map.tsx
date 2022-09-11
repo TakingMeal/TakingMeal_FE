@@ -15,10 +15,12 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
+  Image,
 } from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
+import Octicon from 'react-native-vector-icons/Octicons'
 import Modal from 'react-native-modal'
 import { shallowEqual, useSelector } from 'react-redux'
 import { Location, Locations } from '../redux/reducers/locationsReducer'
@@ -65,7 +67,7 @@ const LocationModal: FunctionComponent<{
           </View>
         </View>
         <ScrollView style={{ width: '100%' }}>
-          {[1, 2, 3, 4, 5, 6].map((comment) => {
+          {[...Array(50).keys()].map((comment) => {
             return (
               <View
                 key={comment}
@@ -134,7 +136,26 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
           location === item && setModal(true)
         }}
       >
-        <Text>{item.name}</Text>
+        <Image
+          source={require('../img/test.png')}
+          style={{ width: 70, height: 70 }}
+        />
+        <View style={{ marginLeft: 10 }}>
+          <Text style={{ fontSize: 14, color: '#FFC063', marginBottom: -5 }}>
+            {filter === 'goodInfluence' ? '선한 영향력' : '카드 가맹점'}
+          </Text>
+          <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{item.name}</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginTop: 5,
+            }}
+          >
+            <MaterialIcon name="location-on" size={16} color="#D4D4D4" />
+            <Text style={{ fontSize: 12 }}>{item.address}</Text>
+          </View>
+        </View>
       </TouchableOpacity>
     )
   }
@@ -199,6 +220,7 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
           ? result.map((location) => {
               return (
                 <Marker
+                  pinColor="linen"
                   key={location.id}
                   coordinate={{
                     latitude: location.lat,
@@ -226,6 +248,7 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
           : locations[filter].map((location) => {
               return (
                 <Marker
+                  pinColor="linen"
                   key={location.id}
                   coordinate={{
                     latitude: location.lat,
@@ -259,6 +282,12 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
           placeholder="가게 검색"
           value={search}
           onChangeText={(text) => {
+            result.length > 0 &&
+              list.current.scrollToIndex({
+                animated: false,
+                index: 0,
+                viewPosition: 0.5,
+              })
             setSearch(text)
             setResult(
               locations[filter].filter((location) => {
@@ -293,10 +322,12 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
           }}
           style={[
             styles.filter,
-            filter === 'goodInfluence' && { backgroundColor: 'lightgray' },
+            filter === 'goodInfluence' && { backgroundColor: '#A4A4A4' },
           ]}
         >
-          <Text>선한 영향력 가게</Text>
+          <Text style={[filter === 'goodInfluence' && { color: 'white' }]}>
+            선한 영향력
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -307,28 +338,43 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
           }}
           style={[
             styles.filter,
-            filter === 'schoolLunch' && { backgroundColor: 'lightgray' },
+            filter === 'schoolLunch' && { backgroundColor: '#A4A4A4' },
           ]}
         >
-          <Text>급식 가맹점</Text>
+          <Text style={[filter === 'schoolLunch' && { color: 'white' }]}>
+            카드 가맹점
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             if (filter !== 'sharedRefrigerator') {
               setSearch('')
-              setFilter('sharedRefrigerator')
+              // setFilter('sharedRefrigerator')
             }
           }}
           style={[
             styles.filter,
-            filter === 'sharedRefrigerator' && { backgroundColor: 'lightgray' },
+            filter === 'sharedRefrigerator' && { backgroundColor: '#A4A4A4' },
           ]}
         >
-          <Text>공유 냉장고</Text>
+          <Text style={[filter === 'sharedRefrigerator' && { color: 'white' }]}>
+            공유 냉장고
+          </Text>
         </TouchableOpacity>
       </Animated.View>
 
       {/* List */}
+      {location && search.length === 0 && (
+        <Animated.View style={[styles.count]}>
+          <Text style={{ color: 'white' }}>
+            {locations[filter].findIndex((_location) => {
+              return _location.id === location?.id
+            }) + 1}{' '}
+            of {locations[filter].length}
+          </Text>
+        </Animated.View>
+      )}
+
       <Animated.FlatList
         ref={list}
         data={search.length > 0 ? result : locations[filter]}
@@ -392,15 +438,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 92,
     left: 25,
-    height: 30,
+    height: 32,
     flexDirection: 'row',
   },
   filter: {
     backgroundColor: 'white',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 30,
     marginRight: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 12,
     ...shadow,
   },
 
@@ -413,10 +462,24 @@ const styles = StyleSheet.create({
   card: {
     width: 300,
     height: '90%',
+    flexDirection: 'row',
+    alignItems: 'center',
     marginHorizontal: 18,
     padding: 15,
     borderRadius: 20,
     backgroundColor: 'white',
+    ...shadow,
+  },
+  count: {
+    width: 75,
+    height: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 165,
+    left: 18,
+    borderRadius: 20,
+    backgroundColor: '#ABABAB',
     ...shadow,
   },
 })
