@@ -1,4 +1,4 @@
-import Geolocation from '@react-native-community/geolocation'
+import Geolocation from "@react-native-community/geolocation";
 import React, {
   useState,
   useEffect,
@@ -6,7 +6,7 @@ import React, {
   Dispatch,
   SetStateAction,
   FunctionComponent,
-} from 'react'
+} from "react";
 import {
   Animated,
   StyleSheet,
@@ -15,29 +15,29 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-} from 'react-native'
-import MapView, { Marker } from 'react-native-maps'
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
-import Modal from 'react-native-modal'
-import { shallowEqual, useSelector } from 'react-redux'
-import { Location, Locations } from '../redux/reducers/locationsReducer'
+} from "react-native";
+import MapView, { Marker } from "react-native-maps";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import MaterialIcon from "react-native-vector-icons/MaterialIcons";
+import Modal from "react-native-modal";
+import { shallowEqual, useSelector } from "react-redux";
+import { Location, Locations } from "../redux/reducers/locationsReducer";
 
 const LocationModal: FunctionComponent<{
-  open: boolean
-  setOpen: Dispatch<SetStateAction<boolean>>
-  location: Location
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  location: Location;
 }> = ({ open, setOpen, location }) => {
   return (
     <Modal
       isVisible={open}
       onBackdropPress={() => {
-        setOpen(false)
+        setOpen(false);
       }}
       backdropOpacity={0.4}
       animationInTiming={500}
       animationOutTiming={500}
-      style={{ margin: 0, flex: 1, justifyContent: 'flex-end' }}
+      style={{ margin: 0, flex: 1, justifyContent: "flex-end" }}
       useNativeDriver
       hideModalContentWhileAnimating
     >
@@ -46,73 +46,73 @@ const LocationModal: FunctionComponent<{
         <Text style={{ fontSize: 30 }}>name: {location.name}</Text>
         <View
           style={{
-            backgroundColor: 'orange',
-            width: '100%',
+            backgroundColor: "orange",
+            width: "100%",
             height: 80,
-            justifyContent: 'center',
-            alignItems: 'center',
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <View
             style={{
-              backgroundColor: 'white',
+              backgroundColor: "white",
               height: 40,
-              width: '70%',
+              width: "70%",
               borderRadius: 15,
             }}
           >
             <TextInput />
           </View>
         </View>
-        <ScrollView style={{ width: '100%' }}>
+        <ScrollView style={{ width: "100%" }}>
           {[1, 2, 3, 4, 5, 6].map((comment) => {
             return (
               <View
                 key={comment}
                 style={{
                   height: 100,
-                  width: '100%',
-                  borderBottomColor: 'black',
+                  width: "100%",
+                  borderBottomColor: "black",
                   borderBottomWidth: 1,
                 }}
               >
                 <Text>{comment}번째 댓글</Text>
               </View>
-            )
+            );
           })}
         </ScrollView>
       </View>
     </Modal>
-  )
-}
+  );
+};
 
 const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
   const locations = useSelector((store: Store) => {
-    return store.locations
-  }, shallowEqual)
+    return store.locations;
+  }, shallowEqual);
   const [currentLocation, setCurrentLocation] = useState<{
-    lat: number
-    lng: number
-  }>()
-  const [modal, setModal] = useState(false)
-  const [filter, setFilter] = useState('goodInfluence')
-  const [location, setLocation] = useState<Location>()
-  const [search, setSearch] = useState('')
-  const [result, setResult] = useState<Location[]>([])
+    lat: number;
+    lng: number;
+  }>();
+  const [modal, setModal] = useState(false);
+  const [filter, setFilter] = useState("goodInfluence");
+  const [location, setLocation] = useState<Location>();
+  const [search, setSearch] = useState("");
+  const [result, setResult] = useState<Location[]>([]);
 
-  const map = useRef<any>(null)
-  const list = useRef<any>(null)
+  const map = useRef<any>(null);
+  const list = useRef<any>(null);
 
-  const opacity = new Animated.Value(0)
+  const opacity = new Animated.Value(0);
   const Intro = Animated.timing(opacity, {
     toValue: 1,
     duration: 1000,
     useNativeDriver: true,
-  })
+  });
 
   const renderItem: FunctionComponent<{
-    item: Location
-    index: number
+    item: Location;
+    index: number;
   }> = ({ item, index }) => {
     return (
       <TouchableOpacity
@@ -124,20 +124,20 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
             longitude: item.lng,
             latitudeDelta: 0.01,
             longitudeDelta: 0.01,
-          })
+          });
           list.current.scrollToIndex({
             animated: true,
             index: index,
             viewPosition: 0.5,
-          })
-          setLocation(item)
-          location === item && setModal(true)
+          });
+          setLocation(item);
+          location === item && setModal(true);
         }}
       >
         <Text>{item.name}</Text>
       </TouchableOpacity>
-    )
-  }
+    );
+  };
 
   useEffect(() => {
     Geolocation.getCurrentPosition(
@@ -145,34 +145,33 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
         setCurrentLocation({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
-        })
+        });
       },
       (error) => {
-        console.log(error.message)
+        console.log(error.message);
       },
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-    )
-  }, [])
+    );
+  }, []);
 
   useEffect(() => {
     if (location) {
-      setSearch('')
-      setResult([])
-      setLocation(locations[filter][0])
+      setSearch("");
+      setResult([]);
+      setLocation(locations[filter][0]);
       map.current.animateToRegion({
         latitude: locations[filter][0].lat,
         longitude: locations[filter][0].lng,
         latitudeDelta: 0.01,
         longitudeDelta: 0.01,
-      })
+      });
       list.current.scrollToIndex({
         animated: true,
         index: 0,
         viewPosition: 0.5,
-      })
+      });
     }
-  }, [filter])
-
+  }, [filter]);
   return (
     <>
       {/* Map */}
@@ -188,7 +187,7 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
           longitudeDelta: 0.05,
         }}
         onMapLoaded={() => {
-          Intro.start()
+          Intro.start();
         }}
         toolbarEnabled={false}
         zoomControlEnabled={false}
@@ -205,23 +204,23 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
                     longitude: location.lng,
                   }}
                   onPress={(event) => {
-                    event.preventDefault()
+                    event.preventDefault();
                     map.current.animateToRegion({
                       latitude: location.lat,
                       longitude: location.lng,
                       latitudeDelta: 0.01,
                       longitudeDelta: 0.01,
-                    })
+                    });
                     list.current.scrollToIndex({
                       animated: true,
                       index: locations[filter].findIndex((_location) => {
-                        return location.id === _location.id
+                        return location.id === _location.id;
                       }),
                       viewPosition: 0.5,
-                    })
+                    });
                   }}
                 />
-              )
+              );
             })
           : locations[filter].map((location) => {
               return (
@@ -232,23 +231,23 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
                     longitude: location.lng,
                   }}
                   onPress={(event) => {
-                    event.preventDefault()
+                    event.preventDefault();
                     map.current.animateToRegion({
                       latitude: location.lat,
                       longitude: location.lng,
                       latitudeDelta: 0.01,
                       longitudeDelta: 0.01,
-                    })
+                    });
                     list.current.scrollToIndex({
                       animated: true,
                       index: locations[filter].findIndex((_location) => {
-                        return location.id === _location.id
+                        return location.id === _location.id;
                       }),
                       viewPosition: 0.5,
-                    })
+                    });
                   }}
                 />
-              )
+              );
             })}
       </MapView>
 
@@ -259,19 +258,19 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
           placeholder="가게 검색"
           value={search}
           onChangeText={(text) => {
-            setSearch(text)
+            setSearch(text);
             setResult(
               locations[filter].filter((location) => {
-                return location.name?.includes(text)
+                return location.name?.includes(text);
               })
-            )
+            );
           }}
         />
         <TouchableOpacity
           style={[styles.iconContainer]}
           activeOpacity={0.6}
           onPress={() => {
-            search.length > 0 ? setSearch('') : jumpTo('second')
+            search.length > 0 ? setSearch("") : jumpTo("second");
           }}
         >
           {search.length > 0 ? (
@@ -286,42 +285,42 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
       <Animated.View style={[styles.filterContainer, { opacity: opacity }]}>
         <TouchableOpacity
           onPress={() => {
-            if (filter !== 'goodInfluence') {
-              setSearch('')
-              setFilter('goodInfluence')
+            if (filter !== "goodInfluence") {
+              setSearch("");
+              setFilter("goodInfluence");
             }
           }}
           style={[
             styles.filter,
-            filter === 'goodInfluence' && { backgroundColor: 'lightgray' },
+            filter === "goodInfluence" && { backgroundColor: "lightgray" },
           ]}
         >
           <Text>선한 영향력 가게</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            if (filter !== 'schoolLunch') {
-              setSearch('')
-              setFilter('schoolLunch')
+            if (filter !== "schoolLunch") {
+              setSearch("");
+              setFilter("schoolLunch");
             }
           }}
           style={[
             styles.filter,
-            filter === 'schoolLunch' && { backgroundColor: 'lightgray' },
+            filter === "schoolLunch" && { backgroundColor: "lightgray" },
           ]}
         >
           <Text>급식 가맹점</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            if (filter !== 'sharedRefrigerator') {
-              setSearch('')
-              setFilter('sharedRefrigerator')
+            if (filter !== "sharedRefrigerator") {
+              setSearch("");
+              setFilter("sharedRefrigerator");
             }
           }}
           style={[
             styles.filter,
-            filter === 'sharedRefrigerator' && { backgroundColor: 'lightgray' },
+            filter === "sharedRefrigerator" && { backgroundColor: "lightgray" },
           ]}
         >
           <Text>공유 냉장고</Text>
@@ -346,8 +345,8 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
         <LocationModal open={modal} setOpen={setModal} location={location} />
       )}
     </>
-  )
-}
+  );
+};
 
 const shadow = {
   shadowOffset: {
@@ -357,15 +356,15 @@ const shadow = {
   shadowOpacity: 0.25,
   shadowRadius: 3.84,
   elevation: 5,
-}
+};
 
 const styles = StyleSheet.create({
   modal: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '55%',
-    backgroundColor: 'white',
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: "55%",
+    backgroundColor: "white",
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,
   },
@@ -373,52 +372,52 @@ const styles = StyleSheet.create({
   searchContainer: {
     width: 360,
     height: 50,
-    flexDirection: 'row',
-    alignItems: 'center',
-    position: 'absolute',
+    flexDirection: "row",
+    alignItems: "center",
+    position: "absolute",
     top: 25,
     left: 25,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 15,
     ...shadow,
   },
-  input: { width: '87%', fontSize: 15 },
+  input: { width: "87%", fontSize: 15 },
   iconContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   filterContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 92,
     left: 25,
     height: 30,
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   filter: {
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 30,
     marginRight: 10,
     ...shadow,
   },
 
   list: {
-    width: '100%',
+    width: "100%",
     height: 120,
-    position: 'absolute',
+    position: "absolute",
     bottom: 35,
   },
   card: {
     width: 300,
-    height: '90%',
+    height: "90%",
     marginHorizontal: 18,
     padding: 15,
     borderRadius: 20,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     ...shadow,
   },
-})
+});
 
-export default Map
+export default Map;

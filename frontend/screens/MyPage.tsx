@@ -17,6 +17,7 @@ import {
 import Modal from "react-native-modal";
 import FontAwesomeIcon5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import MeterialIcon from "react-native-vector-icons/MaterialIcons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   VictoryBar,
@@ -45,52 +46,202 @@ const MyPage: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
   });
   const [filter, setFilter] = useState("dietList");
   const [dietList, setDietList] = useState<MyDiet[]>(myDiet[filter]);
+  const [dateFilter, setDateFileter] = useState(6);
+  const dates: any = useRef([]);
 
   // 해당 Bar의 중간 지점으로 라벨을 그립니다.
   const CenteredLabel = (props: any) => {
     const { datum, scale } = props;
-    const centerPos = scale.y(datum._y / 2);
+    const centerPos = scale.y(datum._y - 8);
     const style = { fill: "white", textAnchor: "middle" };
     // note that because your chart is horizontal,
     // the y value that you calculate informsthe x position of the label
     return <VictoryLabel {...props} x={centerPos} style={style} dx={0} />;
   };
 
-  console.log(dietList[0].meals[0].breakfast);
+  //console.log(dietList[6-dateFilter].meals[0]);
+  //console.log(dietList[0].meals[0].breakfast);
 
-  let tot = 0;
+  // 영양소 정리
+  let temp_cal =
+    dietList[6 - dateFilter].meals[0].breakfast.cal +
+    dietList[6 - dateFilter].meals[0].lunch.cal +
+    dietList[6 - dateFilter].meals[0].dinner.cal;
+  let temp_carbohydrate =
+    dietList[6 - dateFilter].meals[0].breakfast.carbohydrate +
+    dietList[6 - dateFilter].meals[0].lunch.carbohydrate +
+    dietList[6 - dateFilter].meals[0].dinner.carbohydrate;
+  let temp_protein =
+    dietList[6 - dateFilter].meals[0].breakfast.protein +
+    dietList[6 - dateFilter].meals[0].lunch.protein +
+    dietList[6 - dateFilter].meals[0].dinner.protein;
+  let temp_fat =
+    dietList[6 - dateFilter].meals[0].breakfast.fat +
+    dietList[6 - dateFilter].meals[0].lunch.fat +
+    dietList[6 - dateFilter].meals[0].dinner.fat;
 
-  // 칼로리 임시
-  const nutrition = [
-    { nutrition: "칼로리", value: 2700, avg: 2000 },
-    { nutrition: "탄수화물", value: 400, avg: 500 },
-    { nutrition: "단백질", value: 200, avg: 600 },
-    { nutrition: "지방", value: 600, avg: 700 },
+  let foodList: any = [
+    { foodName: dietList[6 - dateFilter].meals[0].breakfast.foodName },
+    { foodName: dietList[6 - dateFilter].meals[0].lunch.foodName },
+    { foodName: dietList[6 - dateFilter].meals[0].dinner.foodName },
   ];
 
+  console.log(foodList[0]);
+  // 정리된 영양소를 차트형식에 맞게 바꿈
+  const nutrition = [
+    { nutrition: "칼로리", value: temp_cal, avg: 2000 },
+    { nutrition: "탄수화물", value: temp_carbohydrate, avg: 500 },
+    { nutrition: "단백질", value: temp_protein, avg: 600 },
+    { nutrition: "지방", value: temp_fat, avg: 700 },
+  ];
   // 비율을 구합니다.
   const getRatio = nutrition.map((nutrition) => {
     let color = nutrition.value >= nutrition.avg ? "#ef9a85" : "#45c1b0"; // 칼로리가 초과되면 차트를 빨간색으로 표시합니다.
     let bgcolor = nutrition.value >= nutrition.avg ? "#ffc163" : "#dfdfdf"; // 칼로리가 초과되면 차트배경을 주황색으로 표시합니다.
-    tot = tot + nutrition.value; // 총 칼로리 계산
+    let value =
+      nutrition.value >= nutrition.avg
+        ? nutrition.value - nutrition.avg
+        : nutrition.value;
+    let ratio =
+      nutrition.value >= nutrition.avg
+        ? ((nutrition.value - nutrition.avg) / nutrition.value) * 100
+        : (nutrition.value / nutrition.avg) * 100;
     return {
       nutrition: nutrition.nutrition, // 영양소 이름
-      // 비율 %
-      ratio:
-        nutrition.value >= nutrition.avg
-          ? ((nutrition.value - nutrition.avg) / nutrition.avg) * 100
-          : (nutrition.value / nutrition.avg) * 100,
-      maxvalue: 100, // 최대비율 100%
-      // 영양소 값
-      value:
-        nutrition.value >= nutrition.avg
-          ? nutrition.value - nutrition.avg
-          : nutrition.value,
+      value: value, // 그래프에 표시될 값
+      ratio: ratio, //비율
+      maxvalue: 100, // 최대비율 (100%)
       avg: nutrition.avg, // 평균 영양소 값
       color: color, // 값의 차트 색깔
       bgcolor: bgcolor, // 값의 차트 배경 색깔
     };
   });
+
+  // 차트를 그린다
+  const ShowChart = () => {
+    return (
+      <VictoryChart
+        height={180}
+        width={300}
+        domainPadding={40}
+        padding={{ left: 60, right: 10, top: 0, bottom: 0 }}
+        horizontal
+      >
+        <VictoryAxis
+          style={{
+            axis: { stroke: "transparent" },
+            // ticks: { stroke: "transparent" },
+            tickLabels: { fontSize: 13, padding: 5 },
+          }}
+        />
+        <VictoryGroup>
+          <VictoryGroup color="#dfdfdf">
+            <VictoryBar
+              style={{ data: { fill: ({ datum }) => datum.bgcolor } }}
+              labels={({ datum }) => `${datum.avg}`}
+              cornerRadius={{ top: 10, bottom: 10 }}
+              barWidth={20}
+              data={getRatio}
+              x="nutrition"
+              y="maxvalue"
+            />
+          </VictoryGroup>
+        </VictoryGroup>
+        <VictoryGroup>
+          <VictoryGroup color="#45c1b0">
+            <VictoryBar
+              barWidth={20}
+              labels={({ datum }) => `${datum.value}`}
+              style={{
+                labels: { fill: "white" },
+                data: { fill: ({ datum }) => datum.color },
+              }}
+              labelComponent={<CenteredLabel />}
+              //verticalAnchor={"middle"}
+              cornerRadius={{ bottom: 10 }}
+              data={getRatio}
+              x="nutrition"
+              y="ratio"
+            />
+          </VictoryGroup>
+        </VictoryGroup>
+      </VictoryChart>
+    );
+  };
+
+  // 오늘로부터 일주일간의 날짜와 요일을 표시합니다.
+
+  let today = new Date();
+  let week = new Array("일", "월", "화", "수", "목", "금", "토");
+  let tmpDate = [];
+  for (let i = 0; i < 7; i++) {
+    let todaydate = new Date(today.setDate(today.getDate()));
+    let showdate = String(todaydate.getDate()).padStart(2, "0");
+    let showmonth = String(todaydate.getMonth() + 1).padStart(2, "0");
+    let showday = todaydate.getDay();
+    tmpDate.push({
+      month: showmonth,
+      date: showdate,
+      day: week[showday],
+    });
+    today.setDate(today.getDate() - 1);
+  }
+
+  // 순서를 역방향으로 바꾼다
+  tmpDate.reverse();
+  // useRef에 날짜를 저장한다.
+  dates.current = tmpDate;
+
+  // 날짜 목록을 표시합니다.
+  const DateList = () => {
+    return (
+      <View style={styles.dateBox}>
+        {dates["current"].map((value: any, index: number) => (
+          <TouchableOpacity
+            activeOpacity={0.6}
+            onPress={() => {
+              console.log("click!" + index);
+              setDateFileter(index);
+            }}
+            key={index}
+          >
+            <View
+              style={
+                dateFilter == index
+                  ? styles.checkedDateListBox
+                  : styles.dateListBox
+              }
+            >
+              <Text style={styles.dateListText}>{value["date"]}</Text>
+              <Text style={styles.dateListText}>{value["day"]}</Text>
+            </View>
+          </TouchableOpacity>
+        ))}
+      </View>
+    );
+  };
+
+  // 음식 목록을 표시합니다.
+  const FoodList = () => {
+    return (
+      <View>
+        {foodList.map((value: any, index: number) => (
+          <TouchableOpacity
+            activeOpacity={0.6}
+            onPress={() => {
+              console.log("click!" + index);
+            }}
+            key={index}
+          >
+            <View style={styles.foodListBox}>
+              <Text style={styles.foodNameText}>{value["foodName"]}</Text>
+              <Text style={styles.foodServingText}>1인분 (150g)</Text>
+            </View>
+          </TouchableOpacity>
+        ))}
+      </View>
+    );
+  };
 
   return (
     <>
@@ -121,35 +272,8 @@ const MyPage: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
           <FontAwesomeIcon name="gear" color="#457987" size={30} />
         </View>
 
-        <View style={styles.dateBox}>
-          <View style={styles.dateListBox}>
-            <Text style={styles.dateListText}>30</Text>
-            <Text style={styles.dateListText}>화</Text>
-          </View>
-          <View style={styles.dateListBox}>
-            <Text style={styles.dateListText}>30</Text>
-            <Text style={styles.dateListText}>화</Text>
-          </View>
-          <View style={styles.dateListBox}>
-            <Text style={styles.dateListText}>30</Text>
-            <Text style={styles.dateListText}>화</Text>
-          </View>
-          <View style={styles.dateListBox}>
-            <Text style={styles.dateListText}>30</Text>
-            <Text style={styles.dateListText}>화</Text>
-          </View>
-          <View style={styles.dateListBox}>
-            <Text style={styles.dateListText}>30</Text>
-            <Text style={styles.dateListText}>화</Text>
-          </View>
-          <View style={styles.dateListBox}>
-            <Text style={styles.dateListText}>30</Text>
-            <Text style={styles.dateListText}>화</Text>
-          </View>
-          <View style={styles.dateListBox}>
-            <Text style={styles.dateListText}>30</Text>
-            <Text style={styles.dateListText}>화</Text>
-          </View>
+        <View>
+          <DateList />
         </View>
 
         <View style={styles.calBox}>
@@ -157,7 +281,10 @@ const MyPage: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
             <View
               style={{ flexDirection: "row", justifyContent: "flex-start" }}
             >
-              <Text style={styles.dateText}>🗓09월 10일</Text>
+              <Text style={styles.dateText}>
+                🗓{dates["current"][dateFilter]["month"]}월
+                {dates["current"][dateFilter]["date"]}일
+              </Text>
               <Text>의 섭취칼로리는</Text>
             </View>
             <View
@@ -167,86 +294,30 @@ const MyPage: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
                 alignItems: "baseline",
               }}
             >
-              <Text style={styles.calText}>{tot}</Text>
+              <Text style={styles.calText}>{temp_cal}</Text>
               <Text>kcal입니다.</Text>
             </View>
           </View>
           <View style={styles.borderLine}></View>
           <View style={styles.calChart}>
-            <VictoryChart
-              height={180}
-              width={300}
-              domainPadding={40}
-              padding={{ left: 60, right: 10, top: 0, bottom: 0 }}
-              horizontal
-            >
-              <VictoryAxis
-                style={{
-                  axis: { stroke: "transparent" },
-                  // ticks: { stroke: "transparent" },
-                  tickLabels: { fontSize: 13, padding: 5 },
-                }}
-              />
-              <VictoryGroup>
-                <VictoryGroup color="#dfdfdf">
-                  <VictoryBar
-                    animate={{
-                      duration: 2000,
-                      onLoad: { duration: 1000 },
-                    }}
-                    style={{ data: { fill: ({ datum }) => datum.bgcolor } }}
-                    labels={({ datum }) => `${datum.avg}`}
-                    cornerRadius={{ top: 10, bottom: 10 }}
-                    barWidth={20}
-                    data={getRatio}
-                    x="nutrition"
-                    y="maxvalue"
-                  />
-                </VictoryGroup>
-              </VictoryGroup>
-              <VictoryGroup>
-                <VictoryGroup color="#45c1b0">
-                  <VictoryBar
-                    barWidth={20}
-                    labels={({ datum }) => `${datum.value}`}
-                    style={{
-                      labels: { fill: "white" },
-                      data: { fill: ({ datum }) => datum.color },
-                    }}
-                    labelComponent={<CenteredLabel />}
-                    //verticalAnchor={"middle"}
-                    cornerRadius={{ bottom: 10 }}
-                    data={getRatio}
-                    x="nutrition"
-                    y="ratio"
-                  />
-                </VictoryGroup>
-              </VictoryGroup>
-            </VictoryChart>
+            <ShowChart />
           </View>
         </View>
         <View>
           <Collapse style={{ alignItems: "center" }}>
             <CollapseHeader style={styles.expandButton}>
               <View>
-                <FontAwesomeIcon name="gear" color="white" size={30} />
+                <MeterialIcon
+                  name="keyboard-arrow-down"
+                  color="gray"
+                  size={50}
+                />
               </View>
             </CollapseHeader>
             <CollapseBody>
               <View style={styles.foodBox}>
                 {/* <Text>펼쳤을때 보일 내용 </Text> */}
-                <View style={styles.foodListBox}>
-                  <Text style={styles.foodNameText}>마라탕</Text>
-                  <Text style={styles.foodServingText}>1인분 (150g)</Text>
-                </View>
-                <View style={styles.foodListBox}>
-                  <Text style={styles.foodNameText}>마라탕</Text>
-                  <Text style={styles.foodServingText}>1인분 (150g)</Text>
-                </View>
-                <View style={styles.foodListBox}>
-                  <Text style={styles.foodNameText}>마라탕</Text>
-                  <Text style={styles.foodServingText}>1인분 (150g)</Text>
-                </View>
+                <FoodList />
                 <View style={styles.foodAddBox}>
                   <Text style={styles.foodNameText}>음식 추가하기</Text>
                 </View>
@@ -324,9 +395,19 @@ const styles = StyleSheet.create({
   },
   dateListBox: {
     alignItems: "center",
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
+  checkedDateListBox: {
+    alignItems: "center",
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    borderRadius: 20,
+    backgroundColor: "#ef9a83",
   },
   dateListText: {
     fontSize: 20,
+
     fontWeight: "normal",
     color: "black",
   },
@@ -372,7 +453,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 50,
-    backgroundColor: "gray",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
     marginTop: -35,
