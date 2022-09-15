@@ -29,12 +29,27 @@ const LocationModal: FunctionComponent<{
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
   location: Location
-}> = ({ open, setOpen, location }) => {
+  filter: string
+}> = ({ open, setOpen, location, filter }) => {
+  const [comment, setComment] = useState('')
+
+  const translateY = new Animated.Value(0)
+  const modalUp = Animated.timing(translateY, {
+    toValue: -180,
+    duration: 500,
+    useNativeDriver: true,
+  })
+
   return (
     <Modal
       isVisible={open}
       onBackdropPress={() => {
         setOpen(false)
+        setComment('')
+      }}
+      onBackButtonPress={() => {
+        setOpen(false)
+        setComment('')
       }}
       backdropOpacity={0.4}
       animationInTiming={500}
@@ -43,36 +58,47 @@ const LocationModal: FunctionComponent<{
       useNativeDriver
       hideModalContentWhileAnimating
     >
-      <View style={[styles.modal]}>
-        <Text style={{ fontSize: 30 }}>id: {location.id}</Text>
-        <Text style={{ fontSize: 30 }}>name: {location.name}</Text>
+      <Animated.View
+        style={[styles.modal, { transform: [{ translateY: translateY }] }]}
+      >
         <View
           style={{
-            backgroundColor: 'orange',
-            width: '100%',
-            height: 80,
-            justifyContent: 'center',
-            alignItems: 'center',
+            paddingHorizontal: 20,
+            paddingVertical: 20,
+            borderBottomColor: 'lightgrey',
+            borderBottomWidth: 1,
+            height: 95,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
           }}
         >
-          <View
-            style={{
-              backgroundColor: 'white',
-              height: 40,
-              width: '70%',
-              borderRadius: 15,
+          <View>
+            <Text style={{ fontSize: 14, color: 'grey', marginBottom: -5 }}>
+              {filter === 'goodInfluence' ? '선한 영향력' : '카드 가맹점'}
+            </Text>
+            <Text style={{ fontSize: 30 }}>{location.name}</Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              modalUp.start()
             }}
           >
-            <TextInput />
-          </View>
+            <FontAwesomeIcon name="heart-o" size={40} color="black" />
+          </TouchableOpacity>
         </View>
+
+        <View style={{ flexDirection: 'row', height: 80, padding: 20 }}>
+          <MaterialIcon name="location-on" size={28} color="#D4D4D4" />
+          <Text style={{ fontSize: 18 }}>{location.address}</Text>
+        </View>
+
         <ScrollView style={{ width: '100%' }}>
           {[...Array(50).keys()].map((comment) => {
             return (
               <View
                 key={comment}
                 style={{
-                  height: 100,
+                  height: 80,
                   width: '100%',
                   borderBottomColor: 'black',
                   borderBottomWidth: 1,
@@ -83,6 +109,36 @@ const LocationModal: FunctionComponent<{
             )
           })}
         </ScrollView>
+      </Animated.View>
+      <View
+        style={{
+          backgroundColor: 'white',
+          width: '100%',
+          height: 80,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: 'lightgrey',
+            height: 40,
+            width: '90%',
+            borderRadius: 10,
+          }}
+        >
+          <TextInput
+            placeholder="댓글을 작성하세요."
+            value={comment}
+            onChangeText={(text) => {
+              setComment(text)
+            }}
+            onSubmitEditing={(event) => {
+              console.log(comment)
+            }}
+          />
+        </View>
       </View>
     </Modal>
   )
@@ -97,7 +153,7 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
     lng: number
   }>()
   const [modal, setModal] = useState(false)
-  const [filter, setFilter] = useState('goodInfluence')
+  const [filter, setFilter] = useState('schoolLunch')
   const [location, setLocation] = useState<Location>()
   const [search, setSearch] = useState('')
   const [result, setResult] = useState<Location[]>([])
@@ -105,7 +161,7 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
   const map = useRef<any>(null)
   const list = useRef<any>(null)
 
-  const opacity = new Animated.Value(0)
+  const opacity = new Animated.Value(1)
   const Intro = Animated.timing(opacity, {
     toValue: 1,
     duration: 1000,
@@ -176,22 +232,21 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
   }, [])
 
   useEffect(() => {
-    if (location) {
-      setSearch('')
-      setResult([])
-      setLocation(locations[filter][0])
-      map.current.animateToRegion({
-        latitude: locations[filter][0].lat,
-        longitude: locations[filter][0].lng,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
-      })
+    setSearch('')
+    setResult([])
+    location && setLocation(locations[filter][0])
+    map.current.animateToRegion({
+      latitude: locations[filter][0].lat,
+      longitude: locations[filter][0].lng,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01,
+    })
+    filter !== 'sharedRefrigerator' &&
       list.current.scrollToIndex({
         animated: true,
         index: 0,
         viewPosition: 0.5,
       })
-    }
   }, [filter])
 
   return (
@@ -234,13 +289,14 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
                       latitudeDelta: 0.01,
                       longitudeDelta: 0.01,
                     })
-                    list.current.scrollToIndex({
-                      animated: true,
-                      index: locations[filter].findIndex((_location) => {
-                        return location.id === _location.id
-                      }),
-                      viewPosition: 0.5,
-                    })
+                    filter !== 'sharedRefrigerator' &&
+                      list.current.scrollToIndex({
+                        animated: true,
+                        index: locations[filter].findIndex((_location) => {
+                          return location.id === _location.id
+                        }),
+                        viewPosition: 0.5,
+                      })
                   }}
                 />
               )
@@ -262,13 +318,14 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
                       latitudeDelta: 0.01,
                       longitudeDelta: 0.01,
                     })
-                    list.current.scrollToIndex({
-                      animated: true,
-                      index: locations[filter].findIndex((_location) => {
-                        return location.id === _location.id
-                      }),
-                      viewPosition: 0.5,
-                    })
+                    filter !== 'sharedRefrigerator' &&
+                      list.current.scrollToIndex({
+                        animated: true,
+                        index: locations[filter].findIndex((_location) => {
+                          return location.id === _location.id
+                        }),
+                        viewPosition: 0.5,
+                      })
                   }}
                 />
               )
@@ -279,8 +336,19 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
       <Animated.View style={[styles.searchContainer, { opacity: opacity }]}>
         <TextInput
           style={[styles.input]}
-          placeholder="가게 검색"
+          placeholder={
+            filter === 'sharedRefrigerator'
+              ? '공유 냉장고는 검색하실 수 없습니다.'
+              : filter === 'goodInfluence'
+              ? `선한 영향력 검색`
+              : `카드 가맹점 검색`
+          }
+          placeholderTextColor={
+            filter === 'sharedRefrigerator' ? 'red' : 'grey'
+          }
           value={search}
+          editable={filter !== 'sharedRefrigerator'}
+          selectTextOnFocus={filter !== 'sharedRefrigerator'}
           onChangeText={(text) => {
             result.length > 0 &&
               list.current.scrollToIndex({
@@ -315,22 +383,6 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
       <Animated.View style={[styles.filterContainer, { opacity: opacity }]}>
         <TouchableOpacity
           onPress={() => {
-            if (filter !== 'goodInfluence') {
-              setSearch('')
-              setFilter('goodInfluence')
-            }
-          }}
-          style={[
-            styles.filter,
-            filter === 'goodInfluence' && { backgroundColor: '#A4A4A4' },
-          ]}
-        >
-          <Text style={[filter === 'goodInfluence' && { color: 'white' }]}>
-            선한 영향력
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
             if (filter !== 'schoolLunch') {
               setSearch('')
               setFilter('schoolLunch')
@@ -347,9 +399,26 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
+            if (filter !== 'goodInfluence') {
+              setSearch('')
+              setFilter('goodInfluence')
+            }
+          }}
+          style={[
+            styles.filter,
+            filter === 'goodInfluence' && { backgroundColor: '#A4A4A4' },
+          ]}
+        >
+          <Text style={[filter === 'goodInfluence' && { color: 'white' }]}>
+            선한 영향력
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => {
             if (filter !== 'sharedRefrigerator') {
               setSearch('')
-              // setFilter('sharedRefrigerator')
+              setFilter('sharedRefrigerator')
             }
           }}
           style={[
@@ -364,7 +433,7 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
       </Animated.View>
 
       {/* List */}
-      {location && search.length === 0 && (
+      {/* {location && search.length === 0 && filter !== 'sharedRefrigerator' && (
         <Animated.View style={[styles.count]}>
           <Text style={{ color: 'white' }}>
             {locations[filter].findIndex((_location) => {
@@ -373,23 +442,32 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
             of {locations[filter].length}
           </Text>
         </Animated.View>
-      )}
+      )} */}
 
-      <Animated.FlatList
-        ref={list}
-        data={search.length > 0 ? result : locations[filter]}
-        renderItem={renderItem}
-        decelerationRate={0}
-        snapToAlignment="center"
-        horizontal
-        pagingEnabled
-        disableIntervalMomentum
-        showsHorizontalScrollIndicator={false}
-        style={[styles.list, { opacity: opacity }]}
-      />
+      {filter !== 'sharedRefrigerator' && (
+        <>
+          <Animated.FlatList
+            ref={list}
+            data={search.length > 0 ? result : locations[filter]}
+            renderItem={renderItem}
+            decelerationRate={0}
+            snapToAlignment="center"
+            horizontal
+            pagingEnabled
+            disableIntervalMomentum
+            showsHorizontalScrollIndicator={false}
+            style={[styles.list, { opacity: opacity }]}
+          />
 
-      {location && (
-        <LocationModal open={modal} setOpen={setModal} location={location} />
+          {location && (
+            <LocationModal
+              open={modal}
+              setOpen={setModal}
+              location={location}
+              filter={filter}
+            />
+          )}
+        </>
       )}
     </>
   )
@@ -407,10 +485,10 @@ const shadow = {
 
 const styles = StyleSheet.create({
   modal: {
-    alignItems: 'center',
-    justifyContent: 'center',
     width: '100%',
-    height: '55%',
+    height: '70%',
+    position: 'absolute',
+    bottom: -100,
     backgroundColor: 'white',
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,
