@@ -6,6 +6,7 @@ import React, {
   Dispatch,
   SetStateAction,
   FunctionComponent,
+  useCallback,
 } from 'react'
 import {
   Animated,
@@ -19,8 +20,10 @@ import {
 } from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
-import Octicon from 'react-native-vector-icons/Octicons'
+import EntypoIcon from 'react-native-vector-icons/Entypo'
+import Ionicon from 'react-native-vector-icons/Ionicons'
 import Modal from 'react-native-modal'
 import { shallowEqual, useSelector } from 'react-redux'
 import { Location, Locations } from '../redux/reducers/locationsReducer'
@@ -39,6 +42,11 @@ const LocationModal: FunctionComponent<{
     duration: 500,
     useNativeDriver: true,
   })
+
+  const submitHandler = useCallback(() => {
+    console.log(comment)
+    setComment('')
+  }, [comment])
 
   return (
     <Modal
@@ -134,9 +142,7 @@ const LocationModal: FunctionComponent<{
             onChangeText={(text) => {
               setComment(text)
             }}
-            onSubmitEditing={(event) => {
-              console.log(comment)
-            }}
+            onSubmitEditing={submitHandler}
           />
         </View>
       </View>
@@ -161,10 +167,10 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
   const map = useRef<any>(null)
   const list = useRef<any>(null)
 
-  const opacity = new Animated.Value(1)
+  const opacity = new Animated.Value(0)
   const Intro = Animated.timing(opacity, {
     toValue: 1,
-    duration: 1000,
+    duration: 500,
     useNativeDriver: true,
   })
 
@@ -334,6 +340,14 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
 
       {/* Search */}
       <Animated.View style={[styles.searchContainer, { opacity: opacity }]}>
+        <View
+          style={{
+            width: 50,
+            height: '100%',
+            backgroundColor: 'yellow',
+            borderRadius: 12,
+          }}
+        ></View>
         <TextInput
           style={[styles.input]}
           placeholder={
@@ -393,6 +407,20 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
             filter === 'schoolLunch' && { backgroundColor: '#A4A4A4' },
           ]}
         >
+          <View
+            style={[
+              styles.filterIconContainer,
+              filter === 'schoolLunch'
+                ? { backgroundColor: 'white' }
+                : { backgroundColor: '#A4A4A4' },
+            ]}
+          >
+            <Ionicon
+              name="card"
+              color={filter === 'schoolLunch' ? '#A4A4A4' : 'white'}
+              size={15}
+            />
+          </View>
           <Text style={[filter === 'schoolLunch' && { color: 'white' }]}>
             카드 가맹점
           </Text>
@@ -409,6 +437,20 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
             filter === 'goodInfluence' && { backgroundColor: '#A4A4A4' },
           ]}
         >
+          <View
+            style={[
+              styles.filterIconContainer,
+              filter === 'goodInfluence'
+                ? { backgroundColor: 'white' }
+                : { backgroundColor: '#A4A4A4' },
+            ]}
+          >
+            <FontAwesome5Icon
+              name="hand-holding-heart"
+              color={filter === 'goodInfluence' ? '#A4A4A4' : 'white'}
+              size={15}
+            />
+          </View>
           <Text style={[filter === 'goodInfluence' && { color: 'white' }]}>
             선한 영향력
           </Text>
@@ -426,6 +468,20 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
             filter === 'sharedRefrigerator' && { backgroundColor: '#A4A4A4' },
           ]}
         >
+          <View
+            style={[
+              styles.filterIconContainer,
+              filter === 'sharedRefrigerator'
+                ? { backgroundColor: 'white' }
+                : { backgroundColor: '#A4A4A4' },
+            ]}
+          >
+            <EntypoIcon
+              name="classic-computer"
+              color={filter === 'sharedRefrigerator' ? '#A4A4A4' : 'white'}
+              size={15}
+            />
+          </View>
           <Text style={[filter === 'sharedRefrigerator' && { color: 'white' }]}>
             공유 냉장고
           </Text>
@@ -433,17 +489,6 @@ const Map: FunctionComponent<{ jumpTo: any }> = ({ jumpTo }) => {
       </Animated.View>
 
       {/* List */}
-      {/* {location && search.length === 0 && filter !== 'sharedRefrigerator' && (
-        <Animated.View style={[styles.count]}>
-          <Text style={{ color: 'white' }}>
-            {locations[filter].findIndex((_location) => {
-              return _location.id === location?.id
-            }) + 1}{' '}
-            of {locations[filter].length}
-          </Text>
-        </Animated.View>
-      )} */}
-
       {filter !== 'sharedRefrigerator' && (
         <>
           <Animated.FlatList
@@ -506,7 +551,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     ...shadow,
   },
-  input: { width: '87%', fontSize: 15 },
+  input: { width: 260, fontSize: 15, marginHorizontal: 5 },
   iconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -514,10 +559,18 @@ const styles = StyleSheet.create({
 
   filterContainer: {
     position: 'absolute',
-    top: 92,
+    top: 94,
     left: 25,
     height: 32,
     flexDirection: 'row',
+  },
+  filterIconContainer: {
+    borderRadius: 90,
+    width: 25,
+    height: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 3,
   },
   filter: {
     backgroundColor: 'white',
@@ -527,7 +580,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginRight: 10,
     paddingVertical: 5,
-    paddingHorizontal: 12,
+    paddingHorizontal: 5,
     ...shadow,
   },
 
