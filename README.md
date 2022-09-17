@@ -1,5 +1,5 @@
 # 밥 한끼 먹자
-> **2022 SW Contest Project - Frontend**
+> **2022 SW Contest Project - Frontend(No Axios)**
 
 ## Developer
 * **정상윤**
