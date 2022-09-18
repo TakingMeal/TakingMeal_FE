@@ -6589,10 +6589,10 @@
     "react-freeze" "^1.0.0"
     "warn-once" "^0.1.0"
 
-"react-native-svg@^13.1.0":
-  "integrity" "sha512-drYa+0piaQ27xFEp1MxRBSu6eHbR37qQITKTHNOmPv1NhPUyZ5tH4ICWe7aTLlB2u6KEhpSHl63HJi3jpZFtvw=="
-  "resolved" "https://registry.npmjs.org/react-native-svg/-/react-native-svg-13.1.0.tgz"
-  "version" "13.1.0"
+"react-native-svg@^13.2.0":
+  "integrity" "sha512-bDvMeFReA3F9pVp0EhACPrEerRcITzTu9N2m2lAPinhIMVvwzGzVXyFsXI8fCMSoeOIh+77hKvukoCedh06tLw=="
+  "resolved" "https://registry.npmjs.org/react-native-svg/-/react-native-svg-13.2.0.tgz"
+  "version" "13.2.0"
   dependencies:
     "css-select" "^5.1.0"
     "css-tree" "^1.1.3"
@@ -6601,6 +6601,11 @@
   "integrity" "sha512-M5pRN6utQfytKWoKlKVzg5NbkYu308qNoW1khGTtEOTs1k14p2dHJ/BWOJoJYHKbPVUyZldbG9MFT7gUl4YHnw=="
   "resolved" "https://registry.npmjs.org/react-native-tab-view/-/react-native-tab-view-3.1.1.tgz"
   "version" "3.1.1"
+
+"react-native-toast-message@^2.1.5":
+  "integrity" "sha512-mk3rELtBEhrhWBCN6CTaw0gypgL9ZNauX3xx1LUs4uee9vc0pVsghrKxO57vroUCcNL2hDeZSLJWdQNMCkGeaQ=="
+  "resolved" "https://registry.npmjs.org/react-native-toast-message/-/react-native-toast-message-2.1.5.tgz"
+  "version" "2.1.5"
 
 "react-native-vector-icons@^9.2.0":
   "integrity" "sha512-wKYLaFuQST/chH3AJRjmOLoLy3JEs1JR6zMNgTaemFpNoXs0ztRnTxcxFD9xhX7cJe1/zoN5BpQYe7kL0m5yyA=="
@@ -7875,288 +7880,288 @@
   "resolved" "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
   "version" "1.1.2"
 
-"victory-area@^36.6.6":
-  "integrity" "sha512-bZhd0G1pgE2GaWwP8+w+714LF6pJU0z4VMVXCyapGLLfWep+jAXwAGt59F5ubwmqiw+9k0Q9exbwtr6iFGpzDg=="
-  "resolved" "https://registry.npmjs.org/victory-area/-/victory-area-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-area@^36.6.7":
+  "integrity" "sha512-bS8hu9aoKNX9Y1WEl3Z5uPhwrX1Tjf3TD5+ShYvTk4kk6Dz54mFp1+r4cNDc+65RB9dUeWAiLKqzQyD+DiFX4A=="
+  "resolved" "https://registry.npmjs.org/victory-area/-/victory-area-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
-    "victory-vendor" "^36.6.6"
+    "victory-core" "^36.6.7"
+    "victory-vendor" "^36.6.7"
 
-"victory-axis@^36.6.6":
-  "integrity" "sha512-bgsqSmt8ihiFHIhwg9EgNKZFP7yfAOxcyBYIvguh3lCv4Ulm5jyoyONgHo7vvs0iBe0aeGKeF7EOSLopUxwPpg=="
-  "resolved" "https://registry.npmjs.org/victory-axis/-/victory-axis-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-axis@^36.6.7":
+  "integrity" "sha512-4tQkUOXR/hp+vG5sLOs8ePWsCCsaV7mnoOvXmn/CglXr89mWunUVPardwuqJ6pBKc9k+ND2i9E850xU7q56lww=="
+  "resolved" "https://registry.npmjs.org/victory-axis/-/victory-axis-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory-bar@^36.6.6":
-  "integrity" "sha512-XNqjGCaxSHl59d4ko4Fnxaml+UUef9NxO7093pJpE0dnUPSYURmuup5/z2jYbU49AvPFcnAByMwsb0OoIoVbGg=="
-  "resolved" "https://registry.npmjs.org/victory-bar/-/victory-bar-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-bar@^36.6.7":
+  "integrity" "sha512-hINYnDwJEblJgFGHH1yWNLfi9Qv2GQluvsxkf6drWTOoHpTCIb9m+dxNoZZ+LAc0ABNbOWmSwyTYKcmyCk33eA=="
+  "resolved" "https://registry.npmjs.org/victory-bar/-/victory-bar-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
-    "victory-vendor" "^36.6.6"
+    "victory-core" "^36.6.7"
+    "victory-vendor" "^36.6.7"
 
-"victory-box-plot@^36.6.6":
-  "integrity" "sha512-95EPvDJktvGlT0zLfZFOMgeF8EfatUEcN0LbaX63tXRMDV0F3zlspWluwaVCLcvFDxec6PsPuzRfMyqKGNlUzg=="
-  "resolved" "https://registry.npmjs.org/victory-box-plot/-/victory-box-plot-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-box-plot@^36.6.7":
+  "integrity" "sha512-cRGy4PKhRzFv6LWay3zuh6yEo9lNTl84Ikq3qZrAwFowlClPjxf1ukZcQwjTdNPYXt/tzXhLhnkxshOqzd9sgA=="
+  "resolved" "https://registry.npmjs.org/victory-box-plot/-/victory-box-plot-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
-    "victory-vendor" "^36.6.6"
+    "victory-core" "^36.6.7"
+    "victory-vendor" "^36.6.7"
 
-"victory-brush-container@^36.6.6":
-  "integrity" "sha512-/D5nfsIxn2LZf4v72Maeu8BA2zNW8QB5w1NWMYfOmwnDACcuSVmKcP5G/I/CD5lyjaaRCzk/db2OzTsQILLgfw=="
-  "resolved" "https://registry.npmjs.org/victory-brush-container/-/victory-brush-container-36.6.6.tgz"
-  "version" "36.6.6"
-  dependencies:
-    "lodash" "^4.17.19"
-    "prop-types" "^15.8.1"
-    "react-fast-compare" "^3.2.0"
-    "victory-core" "^36.6.6"
-
-"victory-brush-line@^36.6.6":
-  "integrity" "sha512-R7EzHpPpq4mIUZ5vGTYqid+zL4EwyXD5JbKX7ibvS1xuUzUNafSZJuLrst26Kdv4iYunjkRu6uDe+3x8K24ExQ=="
-  "resolved" "https://registry.npmjs.org/victory-brush-line/-/victory-brush-line-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-brush-container@^36.6.7":
+  "integrity" "sha512-VmHEvwT4V06tMRLpjJI4sd0ARX+neCZTDN/156fWLTwjocN7uLxMP7FsmYAKjprT48z+Rctzrp4HtTcUO5OqNQ=="
+  "resolved" "https://registry.npmjs.org/victory-brush-container/-/victory-brush-container-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
     "react-fast-compare" "^3.2.0"
-    "victory-core" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory-candlestick@^36.6.6":
-  "integrity" "sha512-yJyEocSMCbRgOadI58fnAwcIjb6BfyjKxoCR/3UcD95+PFyBbLnPX0ewNVFEX4hnYzNhMDjCPR9VPHthWRUjVA=="
-  "resolved" "https://registry.npmjs.org/victory-candlestick/-/victory-candlestick-36.6.6.tgz"
-  "version" "36.6.6"
-  dependencies:
-    "lodash" "^4.17.19"
-    "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
-
-"victory-canvas@^36.6.6":
-  "integrity" "sha512-KDwj2dem8zuz24Cy67Un2mTh1n83g17t8ZkrXAuW913neOS6ycdrxnhf/MvenBWdcDXyKN0HHf/vXaBh1+bVvQ=="
-  "resolved" "https://registry.npmjs.org/victory-canvas/-/victory-canvas-36.6.6.tgz"
-  "version" "36.6.6"
-  dependencies:
-    "lodash" "^4.17.19"
-    "prop-types" "^15.8.1"
-    "victory-bar" "^36.6.6"
-    "victory-core" "^36.6.6"
-
-"victory-chart@^36.6.6":
-  "integrity" "sha512-PA36OBj5121gYDjD3MnGoKPoI9cW2+I+cUTVPh53eCOXKQs2ifoOSswqdeV+Tf2HwAWQh1dODzCchhsulgKmvA=="
-  "resolved" "https://registry.npmjs.org/victory-chart/-/victory-chart-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-brush-line@^36.6.7":
+  "integrity" "sha512-BNbBi2GCUcEz5i0RvBgROZnC4Swy9xPBF416Ypd7fPhXeuW2k9rs6FGziCBcfDVi5kA/ObHysm4KRQ6/zUXhKQ=="
+  "resolved" "https://registry.npmjs.org/victory-brush-line/-/victory-brush-line-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
     "react-fast-compare" "^3.2.0"
-    "victory-axis" "^36.6.6"
-    "victory-core" "^36.6.6"
-    "victory-polar-axis" "^36.6.6"
-    "victory-shared-events" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory-core@^36.6.6":
-  "integrity" "sha512-PmQ+7QNlZ1CiPc/2OXMN76UAu9y8gTZXrwh8ZxM+k8G+6qIkWRMIcI8NCrOutDlfvi04HbOLNupzmTazqo61Jw=="
-  "resolved" "https://registry.npmjs.org/victory-core/-/victory-core-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-candlestick@^36.6.7":
+  "integrity" "sha512-qo3vi8sJ4C8vGAO76V/k7IOoK/TziESOuq7/+KySaYmVKy1uz37Fr8WTm/n4eAWeV+lJnUymYj9/f3ygQliUyQ=="
+  "resolved" "https://registry.npmjs.org/victory-candlestick/-/victory-candlestick-36.6.7.tgz"
+  "version" "36.6.7"
+  dependencies:
+    "lodash" "^4.17.19"
+    "prop-types" "^15.8.1"
+    "victory-core" "^36.6.7"
+
+"victory-canvas@^36.6.7":
+  "integrity" "sha512-sff2eQVVHSvAPsh5VBMPu9ZUJOCoDOClS7iqxnc5zH3MVnMVbR3w5RjZmf8/LdHtb4Unm32/pJkQRl5oSKKaWw=="
+  "resolved" "https://registry.npmjs.org/victory-canvas/-/victory-canvas-36.6.7.tgz"
+  "version" "36.6.7"
+  dependencies:
+    "lodash" "^4.17.19"
+    "prop-types" "^15.8.1"
+    "victory-bar" "^36.6.7"
+    "victory-core" "^36.6.7"
+
+"victory-chart@^36.6.7":
+  "integrity" "sha512-TvSFsXm9+UxnnlZDBFMPYqlPMpi8rDxGz/EmoudpePY91mzNViFcw3DWndHtivO93Cf4KAB6i5ThmTNHaRTD1g=="
+  "resolved" "https://registry.npmjs.org/victory-chart/-/victory-chart-36.6.7.tgz"
+  "version" "36.6.7"
+  dependencies:
+    "lodash" "^4.17.19"
+    "prop-types" "^15.8.1"
+    "react-fast-compare" "^3.2.0"
+    "victory-axis" "^36.6.7"
+    "victory-core" "^36.6.7"
+    "victory-polar-axis" "^36.6.7"
+    "victory-shared-events" "^36.6.7"
+
+"victory-core@^36.6.7":
+  "integrity" "sha512-cpqjpVKk0DDCtCyT+LPaDqk+CxXL6lemRnarUn1DUYWcaUTHAYkdG8Gk2ExrPsKNw2mfpMCwlrvKSD6Bh/XXOA=="
+  "resolved" "https://registry.npmjs.org/victory-core/-/victory-core-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.21"
     "prop-types" "^15.8.1"
     "react-fast-compare" "^3.2.0"
-    "victory-vendor" "^36.6.6"
+    "victory-vendor" "^36.6.7"
 
-"victory-create-container@^36.6.6":
-  "integrity" "sha512-ZW4P0M0UjboWl7+qD/rCTVfZnG8yPO50mudjEPF6Exf6hTE34MoVwbjm7Hf4DS7ulJC0w+B+oqJOxQB+tP5jTw=="
-  "resolved" "https://registry.npmjs.org/victory-create-container/-/victory-create-container-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-create-container@^36.6.7":
+  "integrity" "sha512-yHi0EdMmqCgM7QAltDu70vo8LAYWd3qqLmbu7Z4ry0eQAhOSztaiNgHEttqKegLUrxZTzFHYqkhZqvg5akhZRw=="
+  "resolved" "https://registry.npmjs.org/victory-create-container/-/victory-create-container-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
-    "victory-brush-container" "^36.6.6"
-    "victory-core" "^36.6.6"
-    "victory-cursor-container" "^36.6.6"
-    "victory-selection-container" "^36.6.6"
-    "victory-voronoi-container" "^36.6.6"
-    "victory-zoom-container" "^36.6.6"
+    "victory-brush-container" "^36.6.7"
+    "victory-core" "^36.6.7"
+    "victory-cursor-container" "^36.6.7"
+    "victory-selection-container" "^36.6.7"
+    "victory-voronoi-container" "^36.6.7"
+    "victory-zoom-container" "^36.6.7"
 
-"victory-cursor-container@^36.6.6":
-  "integrity" "sha512-Duw30mFKRoSb2hUJvtnK4iSAob8mdTqY4jczjY4Ny/nwkeIj/oZ8UoF8rZPpqyEitWCo/ZiAkUhjgj6Uju413Q=="
-  "resolved" "https://registry.npmjs.org/victory-cursor-container/-/victory-cursor-container-36.6.6.tgz"
-  "version" "36.6.6"
-  dependencies:
-    "lodash" "^4.17.19"
-    "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
-
-"victory-errorbar@^36.6.6":
-  "integrity" "sha512-2mg1f3YvCwenzhzLzxJduKxJGC6fDi+b76twXAr+2gzdmbtcnaOXClV0PAerxQC5hvemuUKs1gF/PjixbWWK9w=="
-  "resolved" "https://registry.npmjs.org/victory-errorbar/-/victory-errorbar-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-cursor-container@^36.6.7":
+  "integrity" "sha512-FmZ/49y6AcCmzHwUSlAttALwhQAdLUtW9aAbrTzBZHssT7hMe8loz7YnT080E+Fx3A25kpzmXXJSfC3wfMfoSA=="
+  "resolved" "https://registry.npmjs.org/victory-cursor-container/-/victory-cursor-container-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory-group@^36.6.6":
-  "integrity" "sha512-iG1urrXh11DvVpZcdDDJjBnNHzGwjdbwDJmQ0IeANHfRgsUvEu4N/jLZ14pF3wt5t0LQ4ee/a4KyYOw58aevEw=="
-  "resolved" "https://registry.npmjs.org/victory-group/-/victory-group-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-errorbar@^36.6.7":
+  "integrity" "sha512-fa6MqjBi/HQ66rvBFzjw9UmGqlbFsyID0o8Q66PPNLT+RutYAQHCRMJoE1uNodFK/OhPEsAkyYiln+6ItxSkNQ=="
+  "resolved" "https://registry.npmjs.org/victory-errorbar/-/victory-errorbar-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "react-fast-compare" "^3.2.0"
-    "victory-core" "^36.6.6"
-    "victory-shared-events" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory-histogram@^36.6.6":
-  "integrity" "sha512-+bIGTCyGYK4diSkG5JLNxN0r5FhE1mNGQNJpBzToXObmYtmeANeJrrlu5i3Ude4fBy3EhkyQV9Z2B8ZZBZ3DoQ=="
-  "resolved" "https://registry.npmjs.org/victory-histogram/-/victory-histogram-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-group@^36.6.7":
+  "integrity" "sha512-tscopmee4nN0uZABDk8FsG5eNk6UtA3oC+iYs6wOv61Jz80nLT2v/tH+ggvVubVnAUrLwQuiT1+ibi16frJaGQ=="
+  "resolved" "https://registry.npmjs.org/victory-group/-/victory-group-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
     "react-fast-compare" "^3.2.0"
-    "victory-bar" "^36.6.6"
-    "victory-core" "^36.6.6"
-    "victory-vendor" "^36.6.6"
+    "victory-core" "^36.6.7"
+    "victory-shared-events" "^36.6.7"
 
-"victory-legend@^36.6.6":
-  "integrity" "sha512-ts6ndtX6qvi0E34Bhv5YEYruz5Bf6nqq1m72cqc5trbEG+Ee3HAYlfV6A3mCQHzwvLtWjEMLwWS3kBbmJqUhQA=="
-  "resolved" "https://registry.npmjs.org/victory-legend/-/victory-legend-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-histogram@^36.6.7":
+  "integrity" "sha512-BOjWQkgLSLR0LheP7CI+kM8/srG7p9S5KzeSg93zcpVclw9mz0BX203Epvn54bcWWh1CvmuIzsS6HTz2j5tGXw=="
+  "resolved" "https://registry.npmjs.org/victory-histogram/-/victory-histogram-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
+    "react-fast-compare" "^3.2.0"
+    "victory-bar" "^36.6.7"
+    "victory-core" "^36.6.7"
+    "victory-vendor" "^36.6.7"
 
-"victory-line@^36.6.6":
-  "integrity" "sha512-HPeFt7CtQEKy6xv4ArAXSJpre2mYqAOzkHi6NYnIjjT6tzWv4mHi0orKRAxTHT0U8oYWmdrCGtfImTL8QlYgYA=="
-  "resolved" "https://registry.npmjs.org/victory-line/-/victory-line-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-legend@^36.6.7":
+  "integrity" "sha512-UZMCVTiFJe+/um3cNwCxJmsTrdK5EVRu1jaNIom78UsaKmSmqRCsXRts1SkYvvlBG9dcdNCVXjL8YqHnKBO68A=="
+  "resolved" "https://registry.npmjs.org/victory-legend/-/victory-legend-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
-    "victory-vendor" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory-native@^36.6.6":
-  "integrity" "sha512-qhJHDR6Z6v9ryBta/X92T0XhXWXXvNosKGGhRM3sDbyPDmUlZLZti98KIK/2ipSq5uq0IE7FI7e3p79q7YnmMg=="
-  "resolved" "https://registry.npmjs.org/victory-native/-/victory-native-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-line@^36.6.7":
+  "integrity" "sha512-U3WXpSMWWgWMeUzO1XVB3H6qCmzPpXQxhC4+qXtFVaxQX6iO59GsA6qw7PgABo4s1Vg35Qg5iQBj5PyXK8cRbw=="
+  "resolved" "https://registry.npmjs.org/victory-line/-/victory-line-36.6.7.tgz"
+  "version" "36.6.7"
+  dependencies:
+    "lodash" "^4.17.19"
+    "prop-types" "^15.8.1"
+    "victory-core" "^36.6.7"
+    "victory-vendor" "^36.6.7"
+
+"victory-native@^36.6.7":
+  "integrity" "sha512-0niNqNWuljvg6MZuq0eVJRiudU59DeLQ+9lUIUdpOiK9J32u6Y6yyAqivjYedtq3roWg+OdSBOTkjoWJG/N9dw=="
+  "resolved" "https://registry.npmjs.org/victory-native/-/victory-native-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.21"
     "prop-types" "^15.8.1"
     "react-fast-compare" "^3.2.0"
-    "victory" "^36.6.6"
-    "victory-area" "^36.6.6"
-    "victory-axis" "^36.6.6"
-    "victory-bar" "^36.6.6"
-    "victory-box-plot" "^36.6.6"
-    "victory-brush-container" "^36.6.6"
-    "victory-brush-line" "^36.6.6"
-    "victory-candlestick" "^36.6.6"
-    "victory-chart" "^36.6.6"
-    "victory-core" "^36.6.6"
-    "victory-create-container" "^36.6.6"
-    "victory-cursor-container" "^36.6.6"
-    "victory-errorbar" "^36.6.6"
-    "victory-group" "^36.6.6"
-    "victory-histogram" "^36.6.6"
-    "victory-legend" "^36.6.6"
-    "victory-line" "^36.6.6"
-    "victory-pie" "^36.6.6"
-    "victory-polar-axis" "^36.6.6"
-    "victory-scatter" "^36.6.6"
-    "victory-selection-container" "^36.6.6"
-    "victory-shared-events" "^36.6.6"
-    "victory-stack" "^36.6.6"
-    "victory-tooltip" "^36.6.6"
-    "victory-voronoi" "^36.6.6"
-    "victory-voronoi-container" "^36.6.6"
-    "victory-zoom-container" "^36.6.6"
+    "victory" "^36.6.7"
+    "victory-area" "^36.6.7"
+    "victory-axis" "^36.6.7"
+    "victory-bar" "^36.6.7"
+    "victory-box-plot" "^36.6.7"
+    "victory-brush-container" "^36.6.7"
+    "victory-brush-line" "^36.6.7"
+    "victory-candlestick" "^36.6.7"
+    "victory-chart" "^36.6.7"
+    "victory-core" "^36.6.7"
+    "victory-create-container" "^36.6.7"
+    "victory-cursor-container" "^36.6.7"
+    "victory-errorbar" "^36.6.7"
+    "victory-group" "^36.6.7"
+    "victory-histogram" "^36.6.7"
+    "victory-legend" "^36.6.7"
+    "victory-line" "^36.6.7"
+    "victory-pie" "^36.6.7"
+    "victory-polar-axis" "^36.6.7"
+    "victory-scatter" "^36.6.7"
+    "victory-selection-container" "^36.6.7"
+    "victory-shared-events" "^36.6.7"
+    "victory-stack" "^36.6.7"
+    "victory-tooltip" "^36.6.7"
+    "victory-voronoi" "^36.6.7"
+    "victory-voronoi-container" "^36.6.7"
+    "victory-zoom-container" "^36.6.7"
 
-"victory-pie@^36.6.6":
-  "integrity" "sha512-5m0nXg8WUyK0123U0PicfjfMNvPnPy5RS4rtLge3cqkOU++8F1C2VyhYrf5bdRlk4XRwRaE9E+aW5xSVLcYrAQ=="
-  "resolved" "https://registry.npmjs.org/victory-pie/-/victory-pie-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-pie@^36.6.7":
+  "integrity" "sha512-SLkGRsONrB6ZndBYqrh7PfBlbh+8BLyGVCh+78qdm4HfTJ3IC/i19sRZDhpk5rFSrCYMbUktTBYC6b39qwt3ew=="
+  "resolved" "https://registry.npmjs.org/victory-pie/-/victory-pie-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
-    "victory-vendor" "^36.6.6"
+    "victory-core" "^36.6.7"
+    "victory-vendor" "^36.6.7"
 
-"victory-polar-axis@^36.6.6":
-  "integrity" "sha512-L+K/1D3VMrPy2QQDnYy+wrfJza95JVSh4OpVGpdqKgw6TwVo7GpaD6BLXqCjHuOT9IXitcUj4tC48EOT8RlRgg=="
-  "resolved" "https://registry.npmjs.org/victory-polar-axis/-/victory-polar-axis-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-polar-axis@^36.6.7":
+  "integrity" "sha512-+QTGRcnjT/8KUSzTP1K/WiLZzDPwqGfUOGRetAt9JMT/BLrQFeqVktdsv2B5qOkns+9M7QDqXSpmwkO1ldTsOw=="
+  "resolved" "https://registry.npmjs.org/victory-polar-axis/-/victory-polar-axis-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory-scatter@^36.6.6":
-  "integrity" "sha512-YyXJsWrqCN7OYrafyh70tW8BC26EUUVybtRGkNHd1IYcwUGwNO1hscsODvdmtqkfMwmGToMvpWNqAt8uEAioVQ=="
-  "resolved" "https://registry.npmjs.org/victory-scatter/-/victory-scatter-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-scatter@^36.6.7":
+  "integrity" "sha512-pS99OGhxNaQD1GsdgVFUKuFC5x+upHDG1VNTl187iu+R4TT9Ut0MWoClZY1XxBDGnRcIPca9cLU+FRzCrl4TiA=="
+  "resolved" "https://registry.npmjs.org/victory-scatter/-/victory-scatter-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory-selection-container@^36.6.6":
-  "integrity" "sha512-BJBo5I+iXXUxOZ9elwQ1BMktQdKLetACaS83mi30NyMp65vFdd/BUokfGfBARoAKYSnrZ364uYhMpWA90KF70A=="
-  "resolved" "https://registry.npmjs.org/victory-selection-container/-/victory-selection-container-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-selection-container@^36.6.7":
+  "integrity" "sha512-zKNd6ghaIP2b+sLCn2ZIFdAInWJO8cVTAjQeA17KwgZ4f5EeGogCYMBsmZeLeKVwZvkWtegqH9SfsTrYhPBpoQ=="
+  "resolved" "https://registry.npmjs.org/victory-selection-container/-/victory-selection-container-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory-shared-events@^36.6.6":
-  "integrity" "sha512-z+th6I03/LTI+RfenixfSbaioDIgVUxS1kyTCEejpRhf8vSt+MyEHKzAieSwwDBwLWiUf3Uf3n4UMsoFpVsNIQ=="
-  "resolved" "https://registry.npmjs.org/victory-shared-events/-/victory-shared-events-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-shared-events@^36.6.7":
+  "integrity" "sha512-G4Clm873xV2ckKRU7zXOhro1i/kljVg0+/AaMKxVctauu5tdFcNZr59sT22vDH4wnjQ48xLJBT+c6hM4WmGG2g=="
+  "resolved" "https://registry.npmjs.org/victory-shared-events/-/victory-shared-events-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "json-stringify-safe" "^5.0.1"
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
     "react-fast-compare" "^3.2.0"
-    "victory-core" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory-stack@^36.6.6":
-  "integrity" "sha512-HNt3zU7EDbNVkTeNp+LtAC82bmVXTah/mDLxcY8oi6wBrPkq/slUsqwZ2ubA81zX41oW4Z1jb544/JSkPIiaYw=="
-  "resolved" "https://registry.npmjs.org/victory-stack/-/victory-stack-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-stack@^36.6.7":
+  "integrity" "sha512-2Mda4IV8ru0azHjZ9YV2NuJ0DMkjgc4O17f4q1uU20v5U3rJGYfubxYX7qWv8VvaIldogzzXbAr9tRjJ39gvuA=="
+  "resolved" "https://registry.npmjs.org/victory-stack/-/victory-stack-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
     "react-fast-compare" "^3.2.0"
-    "victory-core" "^36.6.6"
-    "victory-shared-events" "^36.6.6"
+    "victory-core" "^36.6.7"
+    "victory-shared-events" "^36.6.7"
 
-"victory-tooltip@^36.6.6":
-  "integrity" "sha512-tdTlISKNKX7BVh2e/aRZx073dST7xS6qY+s0g9OpLUxZzEZsPwm8d4S7zgug4jw3EmL2/1DGE2FaFI7VIR5hgA=="
-  "resolved" "https://registry.npmjs.org/victory-tooltip/-/victory-tooltip-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-tooltip@^36.6.7":
+  "integrity" "sha512-+HrYQfClC7TYkc+0lOff7x/vXcufEWVfxnuJ1C1gDJqNpxCfcOQ4iT5sNm9gdLwPn7vgaC/YlaKuo0wLJMfUUA=="
+  "resolved" "https://registry.npmjs.org/victory-tooltip/-/victory-tooltip-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory-vendor@^36.6.6":
-  "integrity" "sha512-4qTXOWB0GiBpLFKt3+Ac+WaNeA4zBYJQpy2gqEvf0GcwYGQfAULo5X1Gia51ugnmZHI0uMOBTZRW5DyKp+N3NA=="
-  "resolved" "https://registry.npmjs.org/victory-vendor/-/victory-vendor-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-vendor@^36.6.7":
+  "integrity" "sha512-zCL7Pm6oyUHPjGKIimxHhybAKTcEhDRJpdfqxKGXQZX1DgOYeAwVhnag75Fgb6tBx4xm7aRg0Bg7gKGUaOFkmQ=="
+  "resolved" "https://registry.npmjs.org/victory-vendor/-/victory-vendor-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "@types/d3-array" "^3.0.3"
     "@types/d3-ease" "^3.0.0"
@@ -8173,69 +8178,69 @@
     "d3-time" "^3.0.0"
     "d3-timer" "^3.0.1"
 
-"victory-voronoi-container@^36.6.6":
-  "integrity" "sha512-XsXWFhXvYW0hbZZukybY6/VTNvkIxDJIJDkkY+uS0tn+4XisXRhkT23oSxQ8Xk+w+9tlfTjt/tXr4Yy7dcUKJg=="
-  "resolved" "https://registry.npmjs.org/victory-voronoi-container/-/victory-voronoi-container-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-voronoi-container@^36.6.7":
+  "integrity" "sha512-dpwMb22HYLAxk8G9R9hxJa1hns6iK63ZbsRkKZfKgHfQh4E91tpu9oJ/UBEq/e4KKxfToKFVIFf33VOh/hDiKw=="
+  "resolved" "https://registry.npmjs.org/victory-voronoi-container/-/victory-voronoi-container-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "delaunay-find" "0.0.6"
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
     "react-fast-compare" "^3.2.0"
-    "victory-core" "^36.6.6"
-    "victory-tooltip" "^36.6.6"
+    "victory-core" "^36.6.7"
+    "victory-tooltip" "^36.6.7"
 
-"victory-voronoi@^36.6.6":
-  "integrity" "sha512-48nAkoRF4ghiXJK/C3WG4a0oO/b44JdczEIcyt4vMzrFaEU7YxXCcJ3ivZP/S3+vq7FBcjqDoR3EjG85oLMWyA=="
-  "resolved" "https://registry.npmjs.org/victory-voronoi/-/victory-voronoi-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-voronoi@^36.6.7":
+  "integrity" "sha512-8De82/cM57NPlx87KiS6Wb5hRDvpXd6lhHIBtvCdMkNO2ifVUG1x90PyC0k+8NRWMpsBaK2XbDJ7iMePYqhy5Q=="
+  "resolved" "https://registry.npmjs.org/victory-voronoi/-/victory-voronoi-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "d3-voronoi" "^1.1.4"
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory-zoom-container@^36.6.6":
-  "integrity" "sha512-EeXg+kqWpiopNtoY24gAXNexXlDq4FUxg7fgzSZyMY0kuZyyUuOeGisXyHtxRvrsQMj5ZN/Fbc6e5q575mbw7w=="
-  "resolved" "https://registry.npmjs.org/victory-zoom-container/-/victory-zoom-container-36.6.6.tgz"
-  "version" "36.6.6"
+"victory-zoom-container@^36.6.7":
+  "integrity" "sha512-VghZUdjI2LVIcgu7942CmE9p54bvrN/+R69fiworyJF/wBS/QKzsIVDmyY+TyHMznuEKtO2uJgdvu/tp+zolrw=="
+  "resolved" "https://registry.npmjs.org/victory-zoom-container/-/victory-zoom-container-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
     "lodash" "^4.17.19"
     "prop-types" "^15.8.1"
-    "victory-core" "^36.6.6"
+    "victory-core" "^36.6.7"
 
-"victory@^36.6.6":
-  "integrity" "sha512-aMlQ/8Gvd+C49ZGHV49pMy2r1TP+3AF0Vv5Cm6X8jf4AZ9ynGyOy1nNzjkvWfgFhEcruo/T22NMAEQXRO2rEXA=="
-  "resolved" "https://registry.npmjs.org/victory/-/victory-36.6.6.tgz"
-  "version" "36.6.6"
+"victory@^36.6.7":
+  "integrity" "sha512-8qs0jEpv46zfG64xlQvNdf7Kn+dhNi015yndcUGHkMjIXb1HZ+0w4qnypcCnCqbbjGcabOnL48/992PjFXXn5g=="
+  "resolved" "https://registry.npmjs.org/victory/-/victory-36.6.7.tgz"
+  "version" "36.6.7"
   dependencies:
-    "victory-area" "^36.6.6"
-    "victory-axis" "^36.6.6"
-    "victory-bar" "^36.6.6"
-    "victory-box-plot" "^36.6.6"
-    "victory-brush-container" "^36.6.6"
-    "victory-brush-line" "^36.6.6"
-    "victory-candlestick" "^36.6.6"
-    "victory-canvas" "^36.6.6"
-    "victory-chart" "^36.6.6"
-    "victory-core" "^36.6.6"
-    "victory-create-container" "^36.6.6"
-    "victory-cursor-container" "^36.6.6"
-    "victory-errorbar" "^36.6.6"
-    "victory-group" "^36.6.6"
-    "victory-histogram" "^36.6.6"
-    "victory-legend" "^36.6.6"
-    "victory-line" "^36.6.6"
-    "victory-pie" "^36.6.6"
-    "victory-polar-axis" "^36.6.6"
-    "victory-scatter" "^36.6.6"
-    "victory-selection-container" "^36.6.6"
-    "victory-shared-events" "^36.6.6"
-    "victory-stack" "^36.6.6"
-    "victory-tooltip" "^36.6.6"
-    "victory-voronoi" "^36.6.6"
-    "victory-voronoi-container" "^36.6.6"
-    "victory-zoom-container" "^36.6.6"
+    "victory-area" "^36.6.7"
+    "victory-axis" "^36.6.7"
+    "victory-bar" "^36.6.7"
+    "victory-box-plot" "^36.6.7"
+    "victory-brush-container" "^36.6.7"
+    "victory-brush-line" "^36.6.7"
+    "victory-candlestick" "^36.6.7"
+    "victory-canvas" "^36.6.7"
+    "victory-chart" "^36.6.7"
+    "victory-core" "^36.6.7"
+    "victory-create-container" "^36.6.7"
+    "victory-cursor-container" "^36.6.7"
+    "victory-errorbar" "^36.6.7"
+    "victory-group" "^36.6.7"
+    "victory-histogram" "^36.6.7"
+    "victory-legend" "^36.6.7"
+    "victory-line" "^36.6.7"
+    "victory-pie" "^36.6.7"
+    "victory-polar-axis" "^36.6.7"
+    "victory-scatter" "^36.6.7"
+    "victory-selection-container" "^36.6.7"
+    "victory-shared-events" "^36.6.7"
+    "victory-stack" "^36.6.7"
+    "victory-tooltip" "^36.6.7"
+    "victory-voronoi" "^36.6.7"
+    "victory-voronoi-container" "^36.6.7"
+    "victory-zoom-container" "^36.6.7"
 
 "vlq@^1.0.0":
   "integrity" "sha512-gQpnTgkubC6hQgdIcRdYGDSDc+SaujOdyesZQMv6JlfQee/9Mp0Qhnys6WxDWvQnL5WZdT7o2Ul187aSt0Rq+w=="

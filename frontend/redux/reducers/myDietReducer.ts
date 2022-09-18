@@ -6,21 +6,17 @@ interface MyDiet {
   meals: any;
 }
 
-interface MyDiets {
-  dietList: MyDiet[];
-  [props: string]: MyDiet[]
+interface MealInfo {
+  foodName: string;
 }
 
-// const initialState = {
-//   myNutrition: [
-//     { nutrition: "칼로리", value: 2500, avg: 2000 },
-//     { nutrition: "탄수화물", value: 400, avg: 500 },
-//     { nutrition: "단백질", value: 200, avg: 600 },
-//     { nutrition: "지방", value: 600, avg: 700 },
-//   ],
-// };
+interface MyDiets {
+  dietList: MyDiet[];
+  mealInfo: MealInfo[];
+  [props: string]: any;
+}
 
-const initialState: MyDiets = {
+const initialState: any = {
   dietList: [
     {
       isToday: false,
@@ -29,7 +25,7 @@ const initialState: MyDiets = {
         {
           breakfast: {
             foodName: "피자",
-            cal: 111,
+            cal: 1960,
             carbohydrate: 111,
             protein: 111,
             fat: 111,
@@ -37,15 +33,15 @@ const initialState: MyDiets = {
           },
           lunch: {
             foodName: "동파육",
-            cal: 222,
+            cal: 0,
             carbohydrate: 222,
             protein: 222,
             fat: 222,
-            serving: 1,
+            serving: 2,
           },
           dinner: {
             foodName: "치킨",
-            cal: 333,
+            cal: 0,
             carbohydrate: 333,
             protein: 333,
             fat: 333,
@@ -86,19 +82,49 @@ const initialState: MyDiets = {
         },
       ],
     },
+    {
+      isToday: false,
+      weekDay: "수",
+      meals: [
+        {
+          breakfast: {},
+          lunch: {},
+          dinner: {},
+        },
+      ],
+    },
+  ],
+  mealInfo: [
+    {
+      foodName: "",
+      cal: 0,
+      carbohydrate: 0,
+      protein: 0,
+      fat: 0,
+      serving: 0,
+    },
   ],
 };
 
 const myDietReducer = createSlice({
   name: "myDiets",
-  initialState: initialState,
+  initialState,
   reducers: {
     setMyDiets: (state: MyDiets, action: PayloadAction<MyDiets>) => {
       state = action.payload;
+    },
+    setMealInfo: (state, action) => {
+      state["mealInfo"][0].foodName = action.payload.foodName;
+      state["mealInfo"][0].cal = action.payload.cal;
+      state["mealInfo"][0].carbohydrate = action.payload.carbohydrate;
+      state["mealInfo"][0].protein = action.payload.protein;
+      state["mealInfo"][0].fat = action.payload.fat;
+      state["mealInfo"][0].serving = action.payload.serving;
+      // state["mealInfo"][0] = action.payload;
     },
   },
 });
 
 export type { MyDiet, MyDiets };
-export const { setMyDiets } = myDietReducer.actions;
+export const { setMyDiets, setMealInfo } = myDietReducer.actions;
 export default myDietReducer.reducer;
